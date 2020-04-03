@@ -18,12 +18,12 @@
 
 *   http://www.jsonschema2pojo.org/
 
-##Fixes
+## Fixes
 
 *	Enable/disable buttons until content loads
 *	Save the error logs in logs folder not only show in console
 
 
-##Github
+## Github
 
 <https://github.com/mof-afk/MarsRoverAPIClient/tree/master/MarsInformation_final>
