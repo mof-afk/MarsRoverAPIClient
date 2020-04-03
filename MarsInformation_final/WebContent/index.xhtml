@@ -1,0 +1,68 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:p="http://primefaces.org/ui" xmlns:b="http://bootsfaces.net/ui">
+
+
+<h:head></h:head>
+
+<h:body>
+
+	<h:form>
+		<h1>Mars Astronomy Information</h1>
+		<p:panel>
+			<p:panelGrid columns="3">
+
+				<p:outputLabel value="1) Enter Sol (Mars solar day 0 to 1000): " />
+				<p:inputText value="#{nasaInfoBean.solInput}" />
+				<p:commandButton value="Submit"
+					actionListener="#{nasaInfoBean.showPhotosForSol()}"
+					update="outlabel" />
+
+				<p:outputLabel id="outlabel" value="2) Enter photo number (0 to #{nasaInfoBean.photosAmountForSol}): " />
+				<p:inputText value="#{nasaInfoBean.photoIndexInput}" />
+
+				<p:commandButton value="Show"
+					actionListener="#{nasaInfoBean.showSelectedPhoto()}"
+					update="outpanel" />
+			</p:panelGrid>
+		</p:panel>
+		<p:panel id="outpanel" header="#{nasaInfoBean.marsPhoto.rover.name}">
+			<p:graphicImage value="#{nasaInfoBean.marsPhoto.imgSrc}" width="40%" />
+			<p:dataTable var="photo" value="#{nasaInfoBean.photoInfoList}">
+				<p:column headerText="Photo id">
+					<h:outputText value="#{photo.id}" />
+				</p:column>
+				<p:column headerText="Rover name">
+					<h:outputText value="#{photo.camera.fullName}" />
+				</p:column>
+				<p:column headerText="Earth date">
+					<h:outputText value="#{photo.earthDate}" />
+				</p:column>
+				<p:column headerText="Mars sol date">
+					<h:outputText value="#{photo.sol}" />
+				</p:column>
+				<p:column headerText="Rover Id">
+					<h:outputText value="#{photo.camera.roverId}" />
+				</p:column>
+				<p:column headerText="Landing date">
+					<h:outputText value="#{photo.rover.landingDate}" />
+				</p:column>
+				<p:column headerText="Total photos">
+					<h:outputText value="#{photo.rover.totalPhotos}" />
+				</p:column>
+				<p:column headerText="Image URL">
+					<h:outputText value="#{photo.imgSrc}" />
+				</p:column>
+			</p:dataTable>
+		</p:panel>
+
+
+	</h:form>
+</h:body>
+</html>
+
